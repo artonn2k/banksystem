@@ -4,7 +4,7 @@ This repository contains the Gradle project for Bank System.
 
 ## Repository
 
-The source code for this project is hosted on GitHub: [artonn2k/banksystem](hhttps://github.com/artonn2k/banksystem)
+The source code for this project is hosted on GitHub: [artonn2k/banksystem](https://github.com/artonn2k/banksystem)
 
 ## Gradle Setup
 
@@ -66,3 +66,9 @@ This project utilizes several dependencies managed by Gradle:
 - Spring Data JPA for data access.
 - PostgreSQL driver for connecting to a PostgreSQL database.
 - Springdoc OpenAPI for API documentation.
+
+## REMEMBER
+
+I used database in docker you can find the repository for the infrastructure of this project hosted on GitHub: [artonn2k/codechallenge-infrastructure](https://github.com/artonn2k/codechallenge-infrastructure)
+
+When you run the project you can go to swagger [localhost:8085](http://localhost:8085/swagger-ui/index.html)
