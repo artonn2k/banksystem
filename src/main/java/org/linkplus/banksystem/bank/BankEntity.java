@@ -1,8 +1,12 @@
 package org.linkplus.banksystem.bank;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import org.linkplus.banksystem.account.AccountEntity;
 import org.linkplus.banksystem.commons.BaseEntity;
+
+import java.util.List;
 
 @Entity
 @Table(name = "bank")
@@ -17,6 +21,17 @@ public class BankEntity extends BaseEntity {
     private Double transactionFlatFeeAmount;
 
     private Double transactionPercentFeeValue;
+
+    @OneToMany(mappedBy = "bank")
+    private List<AccountEntity> accounts;
+
+    public List<AccountEntity> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<AccountEntity> accounts) {
+        this.accounts = accounts;
+    }
 
     public String getBankName() {
         return bankName;

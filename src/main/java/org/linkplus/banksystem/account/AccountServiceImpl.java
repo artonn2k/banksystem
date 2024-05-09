@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class AccountServiceImpl implements AccountService{
+public class AccountServiceImpl implements AccountService {
 
     private AccountRepository accountRepository;
 
@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService{
     public AccountEntity findById(Long id) {
         logger.info("Trying to find the account with id {}", id);
         return accountRepository.findById(id).orElseThrow(
-                () -> new AccountNotFoundException("Account with this id "+id+" is not found!")
+                () -> new AccountNotFoundException("Account with this id " + id + " is not found!")
         );
     }
 
@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService{
     public AccountEntity update(Long id, AccountEntity account) {
         logger.info("Trying to find  and update the account with id {}", id);
         accountRepository.findById(id).orElseThrow(
-                () -> new AccountNotFoundException("Account with this id "+id+" is not found!")
+                () -> new AccountNotFoundException("Account with this id " + id + " is not found!")
         );
 
         return accountRepository.save(account);
@@ -44,6 +44,7 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public void delete(Long id) {
+        logger.info("Trying to delete account with id {}", id);
         accountRepository.deleteById(id);
     }
 }

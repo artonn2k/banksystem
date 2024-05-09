@@ -15,7 +15,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountEntity> createAccount(@RequestBody AccountEntity account){
+    public ResponseEntity<AccountEntity> createAccount(@RequestBody AccountEntity account) {
 
         AccountEntity createdAccount = accountService.create(account);
 
@@ -23,7 +23,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountEntity> findById(@PathVariable Long id){
+    public ResponseEntity<AccountEntity> findById(@PathVariable Long id) {
 
         AccountEntity foundAccount = accountService.findById(id);
 
@@ -31,10 +31,9 @@ public class AccountController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AccountEntity> updateAccount(@PathVariable Long id, @RequestBody AccountEntity account){
+    public ResponseEntity<AccountEntity> updateAccount(@PathVariable Long id, @RequestBody AccountEntity account) {
 
         if (id == null || account == null) {
-
             return ResponseEntity.notFound().build();
         }
 
@@ -42,7 +41,7 @@ public class AccountController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         accountService.delete(id);
         return ResponseEntity.noContent().build();
     }
