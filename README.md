@@ -71,4 +71,8 @@ This project utilizes several dependencies managed by Gradle:
 
 I used database in docker you can find the repository for the infrastructure of this project hosted on GitHub: [artonn2k/codechallenge-infrastructure](https://github.com/artonn2k/codechallenge-infrastructure)
 
+
+If you want to move the database connection you have it on the -`application.properties` file commented
+
+
 When you run the project you can go to swagger [localhost:8085](http://localhost:8085/swagger-ui/index.html)
