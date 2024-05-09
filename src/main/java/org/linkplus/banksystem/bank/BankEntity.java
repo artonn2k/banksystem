@@ -1,8 +1,8 @@
 package org.linkplus.banksystem.bank;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import org.linkplus.banksystem.account.AccountEntity;
 import org.linkplus.banksystem.commons.BaseEntity;
 
@@ -22,7 +22,8 @@ public class BankEntity extends BaseEntity {
 
     private Double transactionPercentFeeValue;
 
-    @OneToMany(mappedBy = "bank")
+    @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("bank")
     private List<AccountEntity> accounts;
 
     public List<AccountEntity> getAccounts() {

@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/banks")
 public class BankController {
@@ -46,5 +48,11 @@ public class BankController {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         bankService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/accounts")
+    public ResponseEntity<List<AccountEntity>> getListOfAccount(){
+        List<AccountEntity> accounts = bankService.getAllAccountsOfBank();
+        return ResponseEntity.ok(accounts);
     }
 }

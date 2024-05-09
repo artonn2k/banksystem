@@ -1,20 +1,27 @@
 package org.linkplus.banksystem.bank;
 
+import org.linkplus.banksystem.account.AccountEntity;
+import org.linkplus.banksystem.account.AccountRepository;
 import org.linkplus.banksystem.account.AccountServiceImpl;
 import org.linkplus.banksystem.exceptions.BankNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BankServiceImpl implements BankService{
 
     private BankRepository bankRepository;
 
+    private AccountRepository accountRepository;
+
     private final Logger logger = LoggerFactory.getLogger(BankServiceImpl.class);
 
-    public BankServiceImpl(BankRepository bankRepository) {
+    public BankServiceImpl(BankRepository bankRepository, AccountRepository accountRepository) {
         this.bankRepository = bankRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Override
@@ -44,6 +51,11 @@ public class BankServiceImpl implements BankService{
     public void delete(Long id) {
         logger.info("Trying to delete bank with id {}", id);
         bankRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AccountEntity> getAllAccountsOfBank() {
+        return accountRepository.findAll();
     }
 
 

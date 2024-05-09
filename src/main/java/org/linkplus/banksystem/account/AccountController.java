@@ -46,4 +46,32 @@ public class AccountController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}/withdraw")
+    public ResponseEntity<String> withdrawFunds(@PathVariable Long id, @RequestParam Double amount) {
+        try {
+            accountService.withdraw(id, amount);
+            return ResponseEntity.ok("Withdrawal successful");
+        } catch (IllegalArgumentException iae) {
+            return ResponseEntity.badRequest().body(iae.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}/deposit")
+    public ResponseEntity<String> depositFunds(@PathVariable Long id, @RequestParam Double amount) {
+        try{
+            accountService.deposit(id, amount);
+            return ResponseEntity.ok("Deposit is successful");
+        }catch (IllegalArgumentException iae){
+            return ResponseEntity.badRequest().body(iae.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/balance")
+    public ResponseEntity<Double> getAccountBalance(@PathVariable Long id){
+
+        Double balance = accountService.checkBalanceOfAccount(id);
+        return ResponseEntity.ok(balance);
+    }
+
+
 }

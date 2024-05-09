@@ -1,8 +1,10 @@
 package org.linkplus.banksystem.transaction;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.linkplus.banksystem.account.AccountEntity;
 import org.linkplus.banksystem.commons.BaseEntity;
+
+import java.util.List;
 
 @Entity
 @Table(name = "transaction")
@@ -15,6 +17,22 @@ public class TransactionEntity extends BaseEntity {
     private Long resultingAccountId;
     private String transactionReason;
     private String transactionType;
+
+    @ManyToMany
+    @JoinTable(
+            name = "transaction_account",
+            joinColumns = @JoinColumn(name = "transaction_id"),
+            inverseJoinColumns = @JoinColumn(name = "account_id")
+    )
+    private List<AccountEntity> accounts;
+
+    public List<AccountEntity> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<AccountEntity> accounts) {
+        this.accounts = accounts;
+    }
 
     public Double getAmount() {
         return amount;

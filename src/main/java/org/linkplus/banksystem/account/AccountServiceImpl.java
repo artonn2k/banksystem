@@ -47,4 +47,41 @@ public class AccountServiceImpl implements AccountService {
         logger.info("Trying to delete account with id {}", id);
         accountRepository.deleteById(id);
     }
+
+    @Override
+    public void withdraw(Long id, Double amount) {
+
+        AccountEntity account = accountRepository.findById(id).orElseThrow(
+                () -> new AccountNotFoundException("Account with this id " + id + " is not found!")
+        );
+
+        Double balance = account.getBalance();
+        if(balance < amount){
+            throw new IllegalArgumentException("Not enough funds");
+        }
+
+        account.setBalance(balance - amount);
+        accountRepository.save(account);
+    }
+
+    @Override
+    public void deposit(Long id, Double amount) {
+        AccountEntity account = accountRepository.findById(id).orElseThrow(
+                () -> new AccountNotFoundException("Account with this id " + id + " is not found!")
+        );
+
+        Double balance = account.getBalance();
+        account.setBalance(balance + amount);
+        accountRepository.save(account);
+    }
+
+    @Override
+    public Double checkBalanceOfAccount(Long id) {
+
+        AccountEntity account = accountRepository.findById(id).orElseThrow(
+                () -> new AccountNotFoundException("Account with this id " + id + " is not found!")
+        );
+
+        return account.getBalance();
+    }
 }

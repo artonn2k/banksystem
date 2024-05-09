@@ -8,4 +8,10 @@ public interface AccountService {
     AccountEntity update(Long id, AccountEntity account);
 
     void delete(Long id);
+
+    void withdraw(Long id, Double amount);
+
+    void deposit(Long id, Double amount);
+
+    Double checkBalanceOfAccount(Long id);
 }
